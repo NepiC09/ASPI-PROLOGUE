@@ -128,7 +128,7 @@ __meta__ = {
 [node name="Characters" type="YSort" parent="Objects and Player/YSort"]
 
 [node name="NPC" parent="Objects and Player/YSort/Characters" instance=ExtResource( 30 )]
-position = Vector2( 1305, -504 )
+position = Vector2( 1359, -459 )
 
 [node name="Action objects" type="YSort" parent="Objects and Player/YSort"]
 
@@ -137,9 +137,6 @@ position = Vector2( 2232, -882 )
 frame = 18
 change_to = "res://Maps/Interior Example.tscn"
 set_position_to = Vector2( 432, 540 )
-
-[node name="selected" parent="Objects and Player/YSort/Action objects/Door" index="0"]
-frame = 0
 
 [node name="Flowers" type="YSort" parent="Objects and Player/YSort"]
 __meta__ = {
@@ -1236,6 +1233,7 @@ scale = Vector2( 800, 800 )
 color = Color( 0, 0, 0.294118, 0.411765 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 19 )]
+visible = false
 position = Vector2( 1668, -481 )
 zoom = Vector2( 0.6, 0.6 )
 smoothing_speed = 7.0
@@ -1251,5 +1249,4 @@ position = Vector2( 3880, 1864 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 
-[editable path="Objects and Player/YSort/Action objects/Door"]
 [editable path="Camera2D"]

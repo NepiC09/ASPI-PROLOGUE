@@ -1,0 +1,113 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/Dialog System/Dialog.gd" type="Script" id=1]
+
+[node name="Dialog" type="Position2D"]
+script = ExtResource( 1 )
+
+[node name="SizeCorrect" type="Control" parent="."]
+margin_top = 33.6
+margin_right = 24.0
+margin_bottom = 57.6
+rect_scale = Vector2( 1.7, 1.7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SizeCorrect"]
+margin_left = -150.0
+margin_top = -129.0
+margin_right = 150.0
+margin_bottom = -59.0
+alignment = 1
+
+[node name="TextBox" type="Control" parent="SizeCorrect/HBoxContainer"]
+margin_right = 150.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="DialogBackground" type="Polygon2D" parent="SizeCorrect/HBoxContainer/TextBox"]
+scale = Vector2( 1, 1 )
+color = Color( 0.14902, 0.168627, 0.266667, 0.886275 )
+polygon = PoolVector2Array( 6, 0, 144.706, -0.176468, 150, 5.11765, 150, 73.9412, 144, 69, 5.29411, 68.647, 0, 63.5669, 0, 6 )
+
+[node name="Text" type="Label" parent="SizeCorrect/HBoxContainer/TextBox/DialogBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 4.0
+margin_right = 145.0
+margin_bottom = 64.0
+text = "Жаль, конечно, этого добряка."
+autowrap = true
+
+[node name="AnswerBox" type="Control" parent="SizeCorrect/HBoxContainer"]
+margin_left = 154.0
+margin_right = 304.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 150, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SizeCorrect/HBoxContainer/AnswerBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 2.0
+
+[node name="Answer1" type="Control" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer"]
+margin_right = 150.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 0, 19 )
+
+[node name="DialogBackground" type="Polygon2D" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer/Answer1"]
+scale = Vector2( 1, 1 )
+color = Color( 0.14902, 0.168627, 0.266667, 0.886275 )
+polygon = PoolVector2Array( 4.82352, -0.411751, 144.235, -0.411751, 149.529, 4.88236, 149.529, 13.7059, 144.235, 19, -0.470599, 19, -0.470599, 4.88236 )
+
+[node name="AnswerText" type="Label" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer/Answer1/DialogBackground"]
+modulate = Color( 0.952941, 0.584314, 0.584314, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 4.0
+margin_right = 145.0
+margin_bottom = 17.0
+text = "Что случилось?"
+autowrap = true
+
+[node name="Answer2" type="Control" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer"]
+margin_top = 23.0
+margin_right = 150.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 0, 19 )
+
+[node name="DialogBackground" type="Polygon2D" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer/Answer2"]
+scale = Vector2( 1, 1 )
+color = Color( 0.14902, 0.168627, 0.266667, 0.886275 )
+polygon = PoolVector2Array( 4.82352, -0.411751, 144.235, -0.411751, 149.529, 4.88236, 149.529, 13.7059, 144.235, 19, -0.470599, 19, -0.470599, 4.88236 )
+
+[node name="AnswerText" type="Label" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer/Answer2/DialogBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 4.0
+margin_right = 145.0
+margin_bottom = 17.0
+text = "Ок"
+autowrap = true
+
+[node name="Answer3" type="Control" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer"]
+margin_top = 46.0
+margin_right = 150.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 0, 19 )
+
+[node name="DialogBackground" type="Polygon2D" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer/Answer3"]
+scale = Vector2( 1, 1 )
+color = Color( 0.14902, 0.168627, 0.266667, 0.886275 )
+polygon = PoolVector2Array( 4.82352, -0.411751, 144.235, -0.411751, 149.529, 4.88236, 149.529, 13.7059, 144.235, 19, -0.470599, 19, -0.470599, 4.88236 )
+
+[node name="AnswerText" type="Label" parent="SizeCorrect/HBoxContainer/AnswerBox/VBoxContainer/Answer3/DialogBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 4.0
+margin_right = 145.0
+margin_bottom = 17.0
+text = "Ага"
+autowrap = true

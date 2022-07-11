@@ -3,6 +3,7 @@ extends Node
 var _save: SaveGame
 
 onready var _playerStats = PlayerStats
+onready var _camera: Camera2D = null
 onready var _cameraZoom = Vector2(0.7, 0.7)
 
 func _create_save():
