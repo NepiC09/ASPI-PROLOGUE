@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Interior/Objects/png/doors FRAMES.png" type="Texture" id=1]
+[ext_resource path="res://Mixed/Objects/DoorsExteriorFRAMES.tscn" type="PackedScene" id=2]
+
+[node name="Door" instance=ExtResource( 2 )]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -24 )
+hframes = 1
+vframes = 2
+anim_speed = 1
+anim_end = 1
+
+[node name="selected" parent="." index="0"]
+frame = 0

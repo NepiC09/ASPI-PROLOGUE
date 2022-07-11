@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Exterior/City/Objects/PNG/big stones FRAMES.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21, 11.5 )
+
+[node name="Big Stone FRAMES" type="Sprite"]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -33 )
+hframes = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, 3.5 )
+shape = SubResource( 1 )

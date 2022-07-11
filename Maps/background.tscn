@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Maps/background.gd" type="Script" id=1]
+
+[node name="background" type="Polygon2D"]
+position = Vector2( -808, -536 )
+scale = Vector2( 300, 300 )
+color = Color( 0.188235, 0.172549, 0.180392, 1 )
+polygon = PoolVector2Array( 0, 0, 0, 5.33333, 8, 5.33333, 8, 0 )
+script = ExtResource( 1 )
