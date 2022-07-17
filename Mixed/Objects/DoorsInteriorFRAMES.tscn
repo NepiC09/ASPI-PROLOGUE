@@ -10,6 +10,3 @@ hframes = 1
 vframes = 2
 anim_speed = 1
 anim_end = 1
-
-[node name="selected" parent="." index="0"]
-frame = 0

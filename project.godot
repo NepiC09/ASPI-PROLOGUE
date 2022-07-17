@@ -10,19 +10,31 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Characters/Character.gd"
+}, {
+"base": "Resource",
+"class": "CharacterList",
+"language": "GDScript",
+"path": "res://Characters/CharacterList.gd"
+}, {
+"base": "Resource",
 "class": "SaveGame",
 "language": "GDScript",
 "path": "res://Resources/SaveGame.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
+"CharacterList": "",
 "SaveGame": ""
 }
 
 [application]
 
 config/name="ASPI PROLOGUE"
-run/main_scene="res://GUI/Main Menu.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://GUI/Main Menu/Main Menu.tscn"
+config/icon="res://IconTest.png"
 
 [autoload]
 

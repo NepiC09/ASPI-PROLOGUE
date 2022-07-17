@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Exterior/Outer World/Tilemaps/wall.tres" type="TileSet" id=1]
 [ext_resource path="res://Exterior/City/Tilemaps/builds.tres" type="TileSet" id=2]
@@ -29,10 +29,22 @@
 [ext_resource path="res://Exterior/Outer World/Tilemaps/stones.tres" type="TileSet" id=27]
 [ext_resource path="res://Exterior/Outer World/Tilemaps/top water.tres" type="TileSet" id=28]
 [ext_resource path="res://Exterior/Outer World/Tilemaps/roads, floors, water.tres" type="TileSet" id=29]
-[ext_resource path="res://Characters/NPC/NPC.tscn" type="PackedScene" id=30]
 
 [node name="Exterior Example" type="Node2D"]
 position = Vector2( -54, 27 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 19 )]
+visible = false
+position = Vector2( 1668, -481 )
+zoom = Vector2( 0.6, 0.6 )
+smoothing_speed = 7.0
+max_zoom = 1.0
+
+[node name="TopLeft" parent="Camera2D/Limits" index="0"]
+position = Vector2( -1168, -1896 )
+
+[node name="BottomRight" parent="Camera2D/Limits" index="1"]
+position = Vector2( 3880, 1864 )
 
 [node name="grass background" type="Sprite" parent="."]
 position = Vector2( -1072, -1888 )
@@ -126,9 +138,6 @@ __meta__ = {
 }
 
 [node name="Characters" type="YSort" parent="Objects and Player/YSort"]
-
-[node name="NPC" parent="Objects and Player/YSort/Characters" instance=ExtResource( 30 )]
-position = Vector2( 1359, -459 )
 
 [node name="Action objects" type="YSort" parent="Objects and Player/YSort"]
 
@@ -1231,19 +1240,6 @@ position = Vector2( 2802, -915 )
 position = Vector2( -1827, -2142 )
 scale = Vector2( 800, 800 )
 color = Color( 0, 0, 0.294118, 0.411765 )
-
-[node name="Camera2D" parent="." instance=ExtResource( 19 )]
-visible = false
-position = Vector2( 1668, -481 )
-zoom = Vector2( 0.6, 0.6 )
-smoothing_speed = 7.0
-max_zoom = 0.9
-
-[node name="TopLeft" parent="Camera2D/Limits" index="0"]
-position = Vector2( -1168, -1896 )
-
-[node name="BottomRight" parent="Camera2D/Limits" index="1"]
-position = Vector2( 3880, 1864 )
 
 [node name="Fade" parent="." instance=ExtResource( 25 )]
 

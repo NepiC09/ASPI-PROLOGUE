@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+#ссылки на свойства узлов
 onready var animationState = $AnimationTree.get("parameters/playback") #для переключения анимаций
 
 #состояния
@@ -8,18 +9,20 @@ enum {
 	ATTACK
 }
 
-#состояние и вектор движения
-var state = MOVE
-var velocity = Vector2.ZERO
-var _playerStats = PlayerStats
+#переменные 
+var state = MOVE #состояния персонажа 
+var velocity = Vector2.ZERO #вектор движения
+#сохранения персонажа можно сделать иным способом, более удобным, но пока работает и так
+var _playerStats = PlayerStats #ссылка на глобальную сцену, где сохраняются свойства персонажа
 #константы передвижения
 export var ACCELERATION = 1800
 export var MAX_SPEED = 240
 export var FRICTION = 1800
 
+
 func _ready():
-	_playerStats.player = self
-	position = _playerStats.spawnPosition
+	_playerStats.player = self #установка глобальной ссылки на игрока
+	position = _playerStats.spawnPosition #спавн игрока в нужной позиции
 
 func _physics_process(delta):
 	match state:
@@ -48,10 +51,8 @@ func move_state(delta):
 		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
-	move()
-
-func move():
 	velocity = move_and_slide(velocity)
 
-func _exit_tree():
-	_playerStats.player = null
+
+func _exit_tree(): 
+	_playerStats.player = null #обнуление глобальной ссылки - на всякий случай

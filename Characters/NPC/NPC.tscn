@@ -236,7 +236,6 @@ vframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 rotation = 1.5708
 shape = SubResource( 1 )
 
@@ -274,15 +273,15 @@ shape = SubResource( 25 )
 position = Vector2( 0, 24 )
 scale = Vector2( 1.5, 1.5 )
 color = Color( 0.14902, 0.168627, 0.266667, 0.886275 )
-polygon = PoolVector2Array( -24, -54, 21, -57, 24, -81, -21, -78 )
+polygon = PoolVector2Array( -24, -54, 28, -58, 32, -82, -20, -78 )
 script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Interactiv"]
-margin_left = -15.0
-margin_top = -75.0
-margin_right = 20.0
-margin_bottom = -63.0
-text = "Hello!"
+margin_left = -18.0
+margin_top = -74.0
+margin_right = 26.0
+margin_bottom = -62.0
+text = "Привет"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

@@ -1,24 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Mixed/Objects/PNG/doors1 FRAMES.png" type="Texture" id=1]
 [ext_resource path="res://Mixed/Objects/Doors.gd" type="Script" id=2]
-[ext_resource path="res://GUI/Theme/png/BoxSelector.png" type="Texture" id=3]
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 3 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 1.5
-} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48, 36 )
@@ -29,14 +12,6 @@ offset = Vector2( 0, -9 )
 hframes = 4
 vframes = 8
 script = ExtResource( 2 )
-
-[node name="selected" type="AnimatedSprite" parent="."]
-visible = false
-position = Vector2( 0, -9 )
-scale = Vector2( 1.2, 1.2 )
-frames = SubResource( 4 )
-frame = 1
-playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
