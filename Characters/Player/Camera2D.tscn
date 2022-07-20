@@ -5,6 +5,7 @@
 [node name="Camera2D" type="Camera2D"]
 position = Vector2( 160, 90 )
 current = true
+zoom = Vector2( 0.6, 0.6 )
 smoothing_enabled = true
 script = ExtResource( 1 )
 

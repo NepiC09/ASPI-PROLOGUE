@@ -6,7 +6,7 @@ onready var camera = GlobalData._camera
 func _ready():
 	#настройка изменений размера и положения сцены относительно зума камеры
 # warning-ignore:return_value_discarded
-	camera.connect("zoom_changed", self, "_on_zoom_changed")
+#	camera.connect("zoom_changed", self, "_on_zoom_changed")
 	_on_zoom_changed() #сразу же настраиваем, не дожидаясь сигнала
 
 #настройка изменений размера и положения сцены относительно зума камеры

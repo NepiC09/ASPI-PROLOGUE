@@ -8,11 +8,11 @@ onready var bottomRight = $Limits/BottomRight
 var _globalData = GlobalData
 
 #экспортируемые - изменяемые значения
-export var max_zoom = 1.5
-export var min_zoom = 0.5
+var max_zoom = 1.5
+var min_zoom = 0.5
 
 #сигналы
-signal zoom_changed
+#signal zoom_changed
 
 
 func _ready():
@@ -32,18 +32,18 @@ func _exit_tree():
 	_globalData._cameraZoom = zoom 
 	_globalData._camera = null #обнуление камеры, чтобы не было ошибок (на всякий случай)
 
-#вызывается только при нажатии на кнопочки
-func _unhandled_input(_event):
-	#изменения зума камеры от СКМ
-	if Input.is_action_just_released("scroll_down") and !zoom_max():
-		zoom.x += 0.1
-		zoom.y += 0.1
-		emit_signal("zoom_changed")
-		
-	if Input.is_action_just_released("scroll_up") and !zoom_min():
-		zoom.x -= 0.1
-		zoom.y -= 0.1
-		emit_signal("zoom_changed")
+##вызывается только при нажатии на кнопочки
+#func _unhandled_input(_event):
+#	#изменения зума камеры от СКМ
+#	if Input.is_action_just_released("scroll_down") and !zoom_max():
+#		zoom.x += 0.1
+#		zoom.y += 0.1
+#		emit_signal("zoom_changed")
+#
+#	if Input.is_action_just_released("scroll_up") and !zoom_min():
+#		zoom.x -= 0.1
+#		zoom.y -= 0.1
+#		emit_signal("zoom_changed")
 
 #проферка максимального зума
 func zoom_max():

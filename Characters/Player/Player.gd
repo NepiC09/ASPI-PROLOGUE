@@ -6,7 +6,8 @@ onready var animationState = $AnimationTree.get("parameters/playback") #для �
 #состояния
 enum {
 	MOVE,
-	ATTACK
+	ATTACK,
+	DIALOGUE
 }
 
 #переменные 
@@ -30,6 +31,8 @@ func _physics_process(delta):
 			move_state(delta)
 		ATTACK:
 			pass
+		DIALOGUE:
+			dialogue_state()
 
 #Установка направления персонажа 
 func set_direction(input_vector):
@@ -53,6 +56,8 @@ func move_state(delta):
 	
 	velocity = move_and_slide(velocity)
 
+func dialogue_state():
+	animationState.travel("Idle")
 
 func _exit_tree(): 
 	_playerStats.player = null #обнуление глобальной ссылки - на всякий случай

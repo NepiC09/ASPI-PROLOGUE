@@ -28,6 +28,7 @@ func _load_save():
 	_save = SaveGame.load_savegame() as SaveGame
 	#присвоение данных
 	_characterList = _save.character_list
+	
 	_playerStats.load_data(_save)
 	_cameraZoom = _save.camera_zoom
 

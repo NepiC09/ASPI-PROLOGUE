@@ -23,8 +23,8 @@ static func save_exists():
 #функция загрузки сейва
 static func load_savegame(): 
 	#тут непонятно пока - надо читать доку
-	if not ResourceLoader.has_cached(SAVE_GAME_PATH):
-		return ResourceLoader.load(SAVE_GAME_PATH, "", true)
+#	if not ResourceLoader.has_cached(SAVE_GAME_PATH):
+#		return ResourceLoader.load(SAVE_GAME_PATH, "", true)
 	
 	#создание нового файла
 	var file = File.new()

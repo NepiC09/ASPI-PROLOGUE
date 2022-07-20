@@ -35,10 +35,8 @@ position = Vector2( -54, 27 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 19 )]
 visible = false
-position = Vector2( 1668, -481 )
-zoom = Vector2( 0.6, 0.6 )
+position = Vector2( 1719, -486 )
 smoothing_speed = 7.0
-max_zoom = 1.0
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
 position = Vector2( -1168, -1896 )
@@ -129,7 +127,7 @@ frame = 3
 [node name="YSort" type="YSort" parent="Objects and Player"]
 
 [node name="Player" parent="Objects and Player/YSort" instance=ExtResource( 24 )]
-position = Vector2( 1668, -481 )
+position = Vector2( 1719, -486 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Objects and Player/YSort/Player"]
 remote_path = NodePath("../../../../Camera2D")
