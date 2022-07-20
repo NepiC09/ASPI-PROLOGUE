@@ -319,15 +319,13 @@ margin_bottom = 126.0
 rect_scale = Vector2( 1.7, 1.7 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SizeCorrect"]
-margin_left = -150.0
+margin_left = -75.0
 margin_top = -129.0
-margin_right = 150.0
+margin_right = 225.0
 margin_bottom = -59.0
-alignment = 1
 
 [node name="TextBox" type="Control" parent="SizeCorrect/HBoxContainer"]
-margin_left = 75.0
-margin_right = 225.0
+margin_right = 150.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 150, 0 )
 script = ExtResource( 4 )

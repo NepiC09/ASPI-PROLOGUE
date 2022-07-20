@@ -35,7 +35,7 @@ func _ready():
 
 #процесс диалога
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("LeftMouse"):
 		if finished and (action == "Continue" or action == "Open Name"):
 			character.phraseNum += 1
 			next_phrase()

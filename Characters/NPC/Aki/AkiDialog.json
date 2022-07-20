@@ -13,17 +13,17 @@
       "Action": "Answer",
       "Answer": {
         "0": {
-          "Text": "2. Теперь это мой дом",
+          "Text": "1. Теперь это мой дом",
           "Action": "Continue In Line",
           "In Line": "3"
         },
         "1": {
-          "Text": "3. А ты сам кто такой?",
+          "Text": "2. А ты сам кто такой?",
           "Action": "Continue In Line",
           "In Line": "5"
         },
         "2": {
-          "Text": "1. Хорошо, я уйду",
+          "Text": "3. Хорошо, я уйду",
           "Action": "Stop dialogue"
         }
       }
