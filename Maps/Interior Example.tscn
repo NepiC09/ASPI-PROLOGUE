@@ -190,7 +190,7 @@ position = Vector2( 576, 396 )
 [node name="Characters" type="YSort" parent="Objects and Player/YSort"]
 
 [node name="Aki" parent="Objects and Player/YSort/Characters" instance=ExtResource( 26 )]
-position = Vector2( 369, 486 )
+position = Vector2( 324, 504 )
 
 [node name="Wall roof" type="Node2D" parent="."]
 

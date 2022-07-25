@@ -47,7 +47,6 @@ func _on_Timer_timeout():
 #Смена сцены после анимации FadeIn
 func _on_FadeInFinished():
 	playerStats.spawnPosition = set_position_to #установка позиции спавана игрока
-	print(playerStats.spawnPosition)
 # warning-ignore:return_value_discarded
 	get_tree().change_scene(change_to) #смена сцены
 

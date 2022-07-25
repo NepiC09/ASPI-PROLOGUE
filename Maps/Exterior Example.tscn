@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Exterior/Outer World/Tilemaps/wall.tres" type="TileSet" id=1]
 [ext_resource path="res://Exterior/City/Tilemaps/builds.tres" type="TileSet" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Exterior/Outer World/Tilemaps/stones.tres" type="TileSet" id=27]
 [ext_resource path="res://Exterior/Outer World/Tilemaps/top water.tres" type="TileSet" id=28]
 [ext_resource path="res://Exterior/Outer World/Tilemaps/roads, floors, water.tres" type="TileSet" id=29]
+[ext_resource path="res://Characters/NPC/Aki/Aki.tscn" type="PackedScene" id=30]
 
 [node name="Exterior Example" type="Node2D"]
 position = Vector2( -54, 27 )
@@ -136,6 +137,9 @@ __meta__ = {
 }
 
 [node name="Characters" type="YSort" parent="Objects and Player/YSort"]
+
+[node name="Aki" parent="Objects and Player/YSort/Characters" instance=ExtResource( 30 )]
+position = Vector2( 2034, -711 )
 
 [node name="Action objects" type="YSort" parent="Objects and Player/YSort"]
 
