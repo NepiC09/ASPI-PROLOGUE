@@ -1,8 +1,10 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Characters/NPC/PNG/Barmaid.png" type="Texture" id=1]
 [ext_resource path="res://Characters/NPC/NPC.gd" type="Script" id=2]
 [ext_resource path="res://Characters/NPC/Interactiv.gd" type="Script" id=3]
+[ext_resource path="res://GUI/Theme/png/dialog_box_48.png" type="Texture" id=4]
+[ext_resource path="res://Characters/NPC/TextBox.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.0
@@ -225,6 +227,14 @@ start_node = "Idle"
 [sub_resource type="CircleShape2D" id=25]
 radius = 66.2722
 
+[sub_resource type="StyleBoxTexture" id=26]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 18, 18 )
+margin_left = 6.0
+margin_right = 6.0
+margin_top = 6.0
+margin_bottom = 6.0
+
 [node name="NPC" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -270,7 +280,8 @@ collision_mask = 2
 shape = SubResource( 25 )
 
 [node name="Interactiv" type="Polygon2D" parent="."]
-position = Vector2( 0, 24 )
+visible = false
+position = Vector2( -6, 24 )
 scale = Vector2( 1.5, 1.5 )
 color = Color( 0.14902, 0.168627, 0.266667, 0.886275 )
 polygon = PoolVector2Array( -24, -54, 28, -58, 32, -82, -20, -78 )
@@ -282,6 +293,45 @@ margin_top = -74.0
 margin_right = 26.0
 margin_bottom = -62.0
 text = "Привет"
+
+[node name="TextBox" type="Node2D" parent="."]
+position = Vector2( 0, -60 )
+z_index = 1
+script = ExtResource( 5 )
+
+[node name="BackPanel" type="Panel" parent="TextBox"]
+modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -44.0
+margin_top = -39.0
+margin_right = 44.0
+custom_styles/panel = SubResource( 26 )
+
+[node name="TextControl" type="Control" parent="TextBox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -36.0
+margin_top = -33.0
+margin_right = 36.0
+margin_bottom = -6.0
+
+[node name="Text" type="RichTextLabel" parent="TextBox/TextControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -30.0
+margin_bottom = -16.0
+rect_scale = Vector2( 1.7, 1.7 )
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Timer" type="Timer" parent="TextBox"]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

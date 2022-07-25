@@ -3,10 +3,12 @@ extends KinematicBody2D
 #ссылки на узлы сцены
 onready var remoteTransform = $RemoteTransform2D
 onready var interactiv = $Interactiv
+onready var textBox = $TextBox
 #ссылки на свойства объектов
 onready var animationState = $AnimationTree.get("parameters/playback") #для переключения анимаций
 #ссылки на сцены в проекте
 onready var DialogBox = preload("res://Dialog System/Dialog.tscn")
+
 
 #состояния
 enum {
@@ -37,6 +39,7 @@ func _unhandled_input(_event):
 
 func _ready():
 	interactiv.visible = false
+	textBox.set_text("Весь мир театр - а люди в нём актёры.\nТак было сказано давным давно")
 
 func _physics_process(_delta):
 	match state:

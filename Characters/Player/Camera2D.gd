@@ -22,8 +22,8 @@ func _ready():
 	limit_right = bottomRight.position.x
 	limit_bottom = bottomRight.position.y
 	#установка зума на предыдущие сохранённые данные
-	zoom.x = clamp(_globalData._cameraZoom.x, min_zoom, max_zoom)
-	zoom.y = clamp(_globalData._cameraZoom.y, min_zoom, max_zoom)
+#	zoom.x = clamp(_globalData._cameraZoom.x, min_zoom, max_zoom)
+#	zoom.y = clamp(_globalData._cameraZoom.y, min_zoom, max_zoom)
 	#установка глобальной ссылки на камеру
 	_globalData._camera = self
 

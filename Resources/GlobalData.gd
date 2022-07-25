@@ -6,7 +6,7 @@ var _save: SaveGame
 #здесь хранятся глобальные данные, для удобства получения каждого объекта и настройки их
 onready var _playerStats = PlayerStats #игрок
 onready var _camera: Camera2D = null #камера
-onready var _cameraZoom = Vector2(0.7, 0.7) #её зум
+onready var _cameraZoom = Vector2(0.5, 0.5) #её зум
 onready var _characterList = null #список персонажей. Пока только они правильно используют сохранения ресурсов
  
 #создание файла сохранения
