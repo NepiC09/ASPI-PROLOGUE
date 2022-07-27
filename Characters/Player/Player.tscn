@@ -263,7 +263,7 @@ parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="TextBox" type="Node2D" parent="."]
-position = Vector2( 0, -57 )
+position = Vector2( 0, -58 )
 script = ExtResource( 7 )
 
 [node name="BackPanel" type="PanelContainer" parent="TextBox"]
@@ -283,40 +283,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_fonts/normal_font = ExtResource( 8 )
 bbcode_enabled = true
-bbcode_text = "Привет"
-text = "Привет"
-fit_content_height = true
-scroll_active = false
-
-[node name="Speach2" type="RichTextLabel" parent="TextBox/BackPanel"]
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 94.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-size_flags_vertical = 0
-custom_fonts/normal_font = ExtResource( 8 )
-bbcode_enabled = true
-bbcode_text = "Привет"
-text = "Привет"
-fit_content_height = true
-scroll_active = false
-
-[node name="Speach3" type="RichTextLabel" parent="TextBox/BackPanel"]
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 94.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-size_flags_vertical = 0
-custom_fonts/normal_font = ExtResource( 8 )
-bbcode_enabled = true
-bbcode_text = "Привет"
-text = "Привет"
 fit_content_height = true
 scroll_active = false
 
 [node name="LeftButton" type="Button" parent="TextBox"]
+visible = false
 self_modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
 margin_left = -39.0
 margin_top = -8.0
@@ -329,6 +300,7 @@ custom_styles/disabled = SubResource( 25 )
 custom_styles/normal = SubResource( 25 )
 
 [node name="RightButton" type="Button" parent="TextBox"]
+visible = false
 self_modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
 margin_left = 39.0
 margin_top = -8.0
@@ -349,9 +321,10 @@ margin_bottom = 4.0
 alignment = 1
 
 [node name="Select1" type="Control" parent="TextBox/SelectContainer"]
+visible = false
 modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
-margin_left = 2.0
-margin_right = 11.0
+margin_left = 15.0
+margin_right = 24.0
 margin_bottom = 9.0
 rect_min_size = Vector2( 9, 9 )
 
@@ -364,6 +337,7 @@ texture = ExtResource( 6 )
 centered = false
 
 [node name="Select2" type="Control" parent="TextBox/SelectContainer"]
+visible = false
 modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
 margin_left = 15.0
 margin_right = 24.0
@@ -380,9 +354,10 @@ texture = ExtResource( 6 )
 centered = false
 
 [node name="Select3" type="Control" parent="TextBox/SelectContainer"]
+visible = false
 modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
-margin_left = 28.0
-margin_right = 37.0
+margin_left = 22.0
+margin_right = 31.0
 margin_bottom = 9.0
 rect_min_size = Vector2( 9, 9 )
 
@@ -397,5 +372,6 @@ centered = false
 
 [node name="Timer" type="Timer" parent="TextBox"]
 
+[connection signal="resized" from="TextBox/BackPanel/Speach1" to="TextBox" method="_on_Speach1_resized"]
 [connection signal="pressed" from="TextBox/LeftButton" to="TextBox" method="_on_LeftButton_pressed"]
 [connection signal="pressed" from="TextBox/RightButton" to="TextBox" method="_on_RightButton_pressed"]

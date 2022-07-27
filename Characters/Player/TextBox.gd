@@ -1,17 +1,20 @@
 extends Node2D
 
-onready var speach1Text = $BackPanel/Speach1
-onready var speach3Text = $BackPanel/Speach2
-onready var speach2Text = $BackPanel/Speach3
 onready var backPanel = $BackPanel
-
-onready var timer = $Timer
+onready var speach1Text = $BackPanel/Speach1
 
 onready var leftButton = $LeftButton
 onready var rightButton = $RightButton
-onready var select1 = $SelectContainer/Select1/Selected
-onready var select2 = $SelectContainer/Select2/Selected
-onready var select3 = $SelectContainer/Select3/Selected
+
+onready var select1 = $SelectContainer/Select1
+onready var select2 = $SelectContainer/Select2
+onready var select3 = $SelectContainer/Select3
+onready var select1Sprite = $SelectContainer/Select1/Selected
+onready var select2Sprite = $SelectContainer/Select2/Selected
+onready var select3Sprite = $SelectContainer/Select3/Selected
+
+onready var timer = $Timer
+
 
 var currentSpeach = 1 setget set_currentSpeach
 var numberOfAnswers = 1 setget set_numberOfAnswers
@@ -29,62 +32,54 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_right"):
 		rightButton.emit_signal("pressed")
 
-func _ready():
-	speach1Text.visible = false
-	speach2Text.visible = false
-	speach3Text.visible = false
-
 
 func set_speach1(value):
 	_speach1 = value
 	speach1Text.bbcode_text = _speach1
+	set_numberOfAnswers(1)
 
 func set_speach2(value):
 	_speach2 = value
-	speach2Text.bbcode_text = _speach2
+	set_numberOfAnswers(2)
 
 func set_speach3(value):
 	_speach3 = value
-	speach3Text.bbcode_text = _speach3
+	set_numberOfAnswers(3)
 
 func set_currentSpeach(value):
 	currentSpeach = value
-	var lines = 0
 	match currentSpeach:
 		1:
-			speach1Text.visible = true
-			speach2Text.visible = false
-			speach3Text.visible = false
-			select1.visible = true
-			select2.visible = false
-			select3.visible = false
+			speach1Text.bbcode_text = _speach1
+			select1Sprite.visible = true
+			select2Sprite.visible = false
+			select3Sprite.visible = false
 			set_x_size(len(_speach1))
-			lines = ceil(speach1Text.rect_size.y/19)
 		2:
-			speach2Text.visible = true
-			speach1Text.visible = false
-			speach3Text.visible = false
-			select1.visible = false
-			select2.visible = true
-			select3.visible = false
+			speach1Text.bbcode_text = _speach2
+			select1Sprite.visible = false
+			select2Sprite.visible = true
+			select3Sprite.visible = false
 			set_x_size(len(_speach2))
-			lines = ceil(speach2Text.rect_size.y/19)
 		3:
-			speach3Text.visible = true
-			speach1Text.visible = false
-			speach2Text.visible = false
-			select1.visible = false
-			select2.visible = false
-			select3.visible = true
+			speach1Text.bbcode_text = _speach3
+			select1Sprite.visible = false
+			select2Sprite.visible = false
+			select3Sprite.visible = true
 			set_x_size(len(_speach3))
-			lines = ceil(speach3Text.rect_size.y/19)
-	set_y_size(lines - 1)
-	print(lines)
 
 func set_numberOfAnswers(value: int):
 	numberOfAnswers = value
-	print("Number of answers: "+ str(numberOfAnswers))
-	pass
+	if numberOfAnswers == 1:
+		position.y = -36
+	if numberOfAnswers >= 2:
+		position.y = -58
+		select1.visible = true
+		select2.visible = true
+		leftButton.visible = true
+		rightButton.visible = true
+	if numberOfAnswers == 3:
+		select3.visible = true
 
 func set_x_size(value):
 	var count = clamp(value, 6, 17) - 6
@@ -93,8 +88,8 @@ func set_x_size(value):
 	
 
 func set_y_size(value):
-	backPanel.rect_size.y = 32 + value*15
-	backPanel.rect_position.y = -43 - value*15
+	backPanel.rect_size.y = 31 + value*15
+	backPanel.rect_position.y = -43 - (backPanel.rect_size.y - 31)
 
 
 func _on_LeftButton_pressed():
@@ -103,3 +98,8 @@ func _on_LeftButton_pressed():
 
 func _on_RightButton_pressed():
 	set_currentSpeach(min(currentSpeach +1 , numberOfAnswers))
+
+
+func _on_Speach1_resized():
+	var lines = ceil(speach1Text.rect_size.y/19)
+	set_y_size( lines - 1)
