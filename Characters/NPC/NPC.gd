@@ -69,6 +69,7 @@ func _on_Area2D_body_exited(_body):
 #создание диалогового окна
 func make_dialog_box():
 	dialogBox = DialogBox.instance()
+	textBox.visible = true
 	
 	dialogBox.speaker1 = self
 	dialogBox.speaker2 = speaker2

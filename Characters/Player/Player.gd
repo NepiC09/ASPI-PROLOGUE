@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 #ссылки на свойства узлов
 onready var animationState = $AnimationTree.get("parameters/playback") #для переключения анимаций
+onready var textBox = $TextBox
 
 #состояния
 enum {
@@ -24,6 +25,11 @@ export var FRICTION = 1800
 func _ready():
 	_playerStats.player = self #установка глобальной ссылки на игрока
 	position = _playerStats.spawnPosition #спавн игрока в нужной позиции
+	
+	textBox.numberOfAnswers = 3
+	textBox._speach1 = "Привет"
+	textBox._speach2 = "Пока, мой друг прелестный"
+	textBox._speach3 = "Ой, скучно мне очень, новая линия линия"
 
 func _physics_process(delta):
 	match state:

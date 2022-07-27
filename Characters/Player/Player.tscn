@@ -1,7 +1,13 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Characters/NPC/PNG/Merchant.png" type="Texture" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Theme/png/DialogBackPanel.tres" type="StyleBox" id=3]
+[ext_resource path="res://GUI/Theme/png/DialogLeftButton.png" type="Texture" id=4]
+[ext_resource path="res://GUI/Theme/png/dialogNonSelected.png" type="Texture" id=5]
+[ext_resource path="res://GUI/Theme/png/dialogSelected.png" type="Texture" id=6]
+[ext_resource path="res://Characters/Player/TextBox.gd" type="Script" id=7]
+[ext_resource path="res://GUI/Fonts/DefaultFont_size14.tres" type="DynamicFont" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.99999
@@ -218,6 +224,10 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
+[sub_resource type="StyleBoxTexture" id=25]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 15, 18 )
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 3
 script = ExtResource( 2 )
@@ -251,3 +261,141 @@ active = true
 parameters/playback = SubResource( 13 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
+
+[node name="TextBox" type="Node2D" parent="."]
+position = Vector2( 0, -57 )
+script = ExtResource( 7 )
+
+[node name="BackPanel" type="PanelContainer" parent="TextBox"]
+self_modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+margin_left = -50.0
+margin_top = -43.0
+margin_right = 50.0
+margin_bottom = -12.0
+custom_styles/panel = ExtResource( 3 )
+
+[node name="Speach1" type="RichTextLabel" parent="TextBox/BackPanel"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 94.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/normal_font = ExtResource( 8 )
+bbcode_enabled = true
+bbcode_text = "Привет"
+text = "Привет"
+fit_content_height = true
+scroll_active = false
+
+[node name="Speach2" type="RichTextLabel" parent="TextBox/BackPanel"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 94.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/normal_font = ExtResource( 8 )
+bbcode_enabled = true
+bbcode_text = "Привет"
+text = "Привет"
+fit_content_height = true
+scroll_active = false
+
+[node name="Speach3" type="RichTextLabel" parent="TextBox/BackPanel"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 94.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/normal_font = ExtResource( 8 )
+bbcode_enabled = true
+bbcode_text = "Привет"
+text = "Привет"
+fit_content_height = true
+scroll_active = false
+
+[node name="LeftButton" type="Button" parent="TextBox"]
+self_modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+margin_left = -39.0
+margin_top = -8.0
+margin_right = -24.0
+margin_bottom = 10.0
+custom_styles/hover = SubResource( 25 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 25 )
+custom_styles/disabled = SubResource( 25 )
+custom_styles/normal = SubResource( 25 )
+
+[node name="RightButton" type="Button" parent="TextBox"]
+self_modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+margin_left = 39.0
+margin_top = -8.0
+margin_right = 54.0
+margin_bottom = 10.0
+rect_scale = Vector2( -1, 1 )
+custom_styles/hover = SubResource( 25 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 25 )
+custom_styles/disabled = SubResource( 25 )
+custom_styles/normal = SubResource( 25 )
+
+[node name="SelectContainer" type="HBoxContainer" parent="TextBox"]
+margin_left = -20.0
+margin_top = -5.0
+margin_right = 20.0
+margin_bottom = 4.0
+alignment = 1
+
+[node name="Select1" type="Control" parent="TextBox/SelectContainer"]
+modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+margin_left = 2.0
+margin_right = 11.0
+margin_bottom = 9.0
+rect_min_size = Vector2( 9, 9 )
+
+[node name="NonSelected" type="Sprite" parent="TextBox/SelectContainer/Select1"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Selected" type="Sprite" parent="TextBox/SelectContainer/Select1"]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Select2" type="Control" parent="TextBox/SelectContainer"]
+modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+margin_left = 15.0
+margin_right = 24.0
+margin_bottom = 9.0
+rect_min_size = Vector2( 9, 9 )
+
+[node name="NonSelected" type="Sprite" parent="TextBox/SelectContainer/Select2"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Selected" type="Sprite" parent="TextBox/SelectContainer/Select2"]
+visible = false
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Select3" type="Control" parent="TextBox/SelectContainer"]
+modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+margin_left = 28.0
+margin_right = 37.0
+margin_bottom = 9.0
+rect_min_size = Vector2( 9, 9 )
+
+[node name="NonSelected" type="Sprite" parent="TextBox/SelectContainer/Select3"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Selected" type="Sprite" parent="TextBox/SelectContainer/Select3"]
+visible = false
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Timer" type="Timer" parent="TextBox"]
+
+[connection signal="pressed" from="TextBox/LeftButton" to="TextBox" method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="TextBox/RightButton" to="TextBox" method="_on_RightButton_pressed"]

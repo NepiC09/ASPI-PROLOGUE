@@ -16,14 +16,11 @@ texture = ExtResource( 3 )
 parameters/playback = SubResource( 1 )
 
 [node name="Interactiv" parent="." index="6"]
-position = Vector2( -7, 24 )
-z_index = 1
-antialiased = true
-polygon = PoolVector2Array( -24, -54, 32, -58, 34, -82, -21, -78 )
+margin_top = -86.0
+margin_bottom = -46.0
 
 [node name="Label" parent="Interactiv" index="0"]
 margin_right = 29.0
-text = "Привет!"
 
 [node name="TextBox" parent="." index="7"]
 position = Vector2( 0, -45 )
