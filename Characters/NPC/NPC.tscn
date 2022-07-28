@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Characters/NPC/PNG/Barmaid.png" type="Texture" id=1]
 [ext_resource path="res://Characters/NPC/NPC.gd" type="Script" id=2]
 [ext_resource path="res://GUI/Theme/png/DialogBackPanel.tres" type="StyleBox" id=3]
+[ext_resource path="res://GUI/Fonts/DefaultFont_size14.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Characters/NPC/TextBox.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -271,6 +272,7 @@ collision_mask = 2
 shape = SubResource( 25 )
 
 [node name="Interactiv" type="Panel" parent="."]
+visible = false
 self_modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
 margin_left = -20.0
 margin_top = -101.0
@@ -290,37 +292,32 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "E"
 
 [node name="TextBox" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -60 )
 z_index = 1
 script = ExtResource( 5 )
 
-[node name="BackPanel" type="Panel" parent="TextBox"]
-modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+[node name="BackPanel" type="PanelContainer" parent="TextBox"]
+self_modulate = Color( 0.14902, 0.168627, 0.266667, 1 )
+show_behind_parent = true
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -44.0
+margin_left = -50.0
 margin_top = -39.0
-margin_right = 44.0
-margin_bottom = -7.0
+margin_right = 50.0
+margin_bottom = -8.0
 custom_styles/panel = ExtResource( 3 )
 
-[node name="TextControl" type="Control" parent="TextBox"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -36.0
-margin_top = -33.0
-margin_right = 36.0
-margin_bottom = -6.0
-
-[node name="Text" type="RichTextLabel" parent="TextBox/TextControl"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -3.0
-margin_right = -29.0
-margin_bottom = -16.0
-rect_scale = Vector2( 1.7, 1.7 )
+[node name="Text" type="RichTextLabel" parent="TextBox/BackPanel"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 94.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
 bbcode_text = "Привет"
 text = "Привет"
@@ -334,3 +331,4 @@ __meta__ = {
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="resized" from="TextBox/BackPanel/Text" to="TextBox" method="_on_Text_resized"]

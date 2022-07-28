@@ -263,6 +263,7 @@ parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="TextBox" type="Node2D" parent="."]
+visible = false
 position = Vector2( 0, -58 )
 script = ExtResource( 7 )
 

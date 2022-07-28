@@ -19,7 +19,7 @@ onready var timer = $Timer
 var currentSpeach = 1 setget set_currentSpeach
 var numberOfAnswers = 1 setget set_numberOfAnswers
 
-var width = 7
+var width = 15
 
 var _speach1 = "" setget set_speach1
 var _speach2 = "" setget set_speach2
@@ -37,6 +37,7 @@ func set_speach1(value):
 	_speach1 = value
 	speach1Text.bbcode_text = _speach1
 	set_numberOfAnswers(1)
+	set_x_size(len(speach1Text.text))
 
 func set_speach2(value):
 	_speach2 = value
@@ -54,19 +55,19 @@ func set_currentSpeach(value):
 			select1Sprite.visible = true
 			select2Sprite.visible = false
 			select3Sprite.visible = false
-			set_x_size(len(_speach1))
+			set_x_size(len(speach1Text.text))
 		2:
 			speach1Text.bbcode_text = _speach2
 			select1Sprite.visible = false
 			select2Sprite.visible = true
 			select3Sprite.visible = false
-			set_x_size(len(_speach2))
+			set_x_size(len(speach1Text.text))
 		3:
 			speach1Text.bbcode_text = _speach3
 			select1Sprite.visible = false
 			select2Sprite.visible = false
 			select3Sprite.visible = true
-			set_x_size(len(_speach3))
+			set_x_size(len(speach1Text.text))
 
 func set_numberOfAnswers(value: int):
 	numberOfAnswers = value
@@ -82,9 +83,9 @@ func set_numberOfAnswers(value: int):
 		select3.visible = true
 
 func set_x_size(value):
-	var count = clamp(value, 6, 17) - 6
-	backPanel.rect_size.x = 100 + count * width
-	backPanel.rect_position.x = -(backPanel.rect_size.x - 100)/2 - 50
+	var count = min(value, 17) - 1
+	backPanel.rect_size.x = 30 + count * width
+	backPanel.rect_position.x = -(backPanel.rect_size.x - 30)/2 - 15
 	
 
 func set_y_size(value):
@@ -102,4 +103,4 @@ func _on_RightButton_pressed():
 
 func _on_Speach1_resized():
 	var lines = ceil(speach1Text.rect_size.y/19)
-	set_y_size( lines - 1)
+	set_y_size(lines - 1)

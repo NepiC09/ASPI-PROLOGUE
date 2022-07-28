@@ -24,3 +24,7 @@ margin_right = 29.0
 
 [node name="TextBox" parent="." index="7"]
 position = Vector2( 0, -45 )
+
+[node name="Text" parent="TextBox/BackPanel" index="0"]
+bbcode_text = ""
+text = ""

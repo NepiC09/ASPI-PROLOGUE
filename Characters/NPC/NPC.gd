@@ -38,8 +38,7 @@ func _unhandled_input(_event):
 		interactiv.visible = false
 
 func _ready():
-	interactiv.visible = false
-	textBox.set_text("Весь мир театр - а люди в нём актёры.\nТак было сказано давным давно")
+	textBox._text = "[wave amp=30 freq=10]ДДДДД[/wave]"
 
 func _physics_process(_delta):
 	match state:
