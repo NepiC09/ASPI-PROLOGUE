@@ -25,8 +25,7 @@ func _ready():
 	NPC_TextBox = NPC.textBox
 	player_TextBox = player.textBox
 	
-	NPC_TextBox.visible = true
-	player_TextBox.visible = false
+	fade_animation(0)
 	
 	character = NPC.character
 	player_TextBox.connect("actionSignal", self, "_on_AnswerBox_actionSignal")
@@ -47,10 +46,9 @@ func next_phrase():
 	if(character.phraseNum >= len(dialogue[character.dialogNum])): #если фразы закончились
 		NPC.state = NPC.MOVE
 		player.state = player.MOVE
-		NPC_TextBox.visible = false
-		player_TextBox.visible = false
 		queue_free()
 		return
+	
 	
 	NPC_TextBox._text = dialogue[character.dialogNum][character.phraseNum as String]["Text"]
 	
@@ -63,8 +61,7 @@ func next_phrase():
 
 
 func set_answers():
-	NPC_TextBox.visible = false
-	player_TextBox.visible = true
+	fade_animation(1)
 	
 	var answers = dialogue[character.dialogNum][character.phraseNum as String]["Answer"]
 	var numAnswers = len(answers)
@@ -81,18 +78,18 @@ func _on_AnswerBox_actionSignal(_answer: String):
 	var answers = dialogue[character.dialogNum][character.phraseNum as String]["Answer"]
 	var answerAction = answers[_answer]["Action"]
 	if answerAction == "Stop dialogue":
-		NPC.state = NPC.MOVE
-		player.state = player.MOVE
-		character.dialogNum += 1 #ВРЕМЕННОЕ РЕШЕНИЕ - В ДАЛЬНЕЙШЕМ БУДЕТ DEFAULT
-		NPC_TextBox.visible = false
-		player_TextBox.visible = false
-		queue_free()
+		character.phraseNum = len(dialogue[character.dialogNum])
+		quit_dialog()
 	elif answerAction == "Continue In Line":
 		character.phraseNum = answers[_answer]["In Line"] as int
 		next_phrase()
-		NPC_TextBox.visible = true
-		player_TextBox.visible = false
+		fade_animation(0)
 
+func quit_dialog():
+		NPC.state = NPC.MOVE
+		player.state = player.MOVE
+		
+		fade_animation(3)
 
 #получение диалога в виде массива
 func get_dialogue() -> Array:
@@ -107,3 +104,35 @@ func get_dialogue() -> Array:
 		return output 
 	else: 
 		return []
+
+func fade_animation(side):
+	var fade_speed = 0.3
+	if side == 0 or side == 1:
+		NPC_TextBox.visible = abs(side - 1) 
+		player_TextBox.visible = side 
+		
+		$Tween.interpolate_property(NPC_TextBox, "modulate:a", side, abs(side-1), 
+								fade_speed,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		$Tween.start()
+		$Tween.interpolate_property(player_TextBox, "modulate:a", abs(side-1), side, 
+								fade_speed,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		$Tween.start()
+	
+	else:
+		side -= 2
+		if side == 0:
+			NPC_TextBox.visible = true
+			player_TextBox.visible = true
+		
+		$Tween.interpolate_property(NPC_TextBox, "modulate:a", side, abs(side-1), 
+									fade_speed, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		$Tween.start()
+		$Tween.interpolate_property(player_TextBox, "modulate:a", side, abs(side-1), 
+									fade_speed,Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		$Tween.start()
+		
+		yield($Tween,"tween_all_completed")
+		if side == 1:
+			NPC_TextBox.visible = false
+			player_TextBox.visible = false
+			queue_free()

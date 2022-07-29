@@ -37,9 +37,6 @@ func _unhandled_input(_event):
 		make_dialog_box() #создаёт диалоговое окно и настраивает
 		interactiv.visible = false
 
-func _ready():
-	textBox._text = "[wave amp=30 freq=10]ДДДДД[/wave]"
-
 func _physics_process(_delta):
 	match state:
 		MOVE:
