@@ -14,7 +14,8 @@ onready var select2Sprite = $SelectContainer/Select2/Selected
 onready var select3Sprite = $SelectContainer/Select3/Selected
 
 onready var timer = $Timer
-
+var textSpeed :float = 20
+var finished = true
 
 var currentSpeach = 1 setget set_currentSpeach
 var numberOfAnswers = 1 setget set_numberOfAnswers
@@ -27,16 +28,20 @@ var _speach3 = "" setget set_speach3
 
 signal actionSignal
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_left"):
 		leftButton.emit_signal("pressed")
 	if Input.is_action_just_pressed("ui_right"):
 		rightButton.emit_signal("pressed")
-	if Input.is_action_just_pressed("ui_accept"):
-		emit_signal("actionSignal", str(currentSpeach - 1))
-		set_select_visible(false)
-		currentSpeach = 1
-		self.set_process_unhandled_input(false)
+	if Input.is_action_just_pressed("ui_accept"): 
+		if finished:
+			self.set_process_unhandled_input(false)
+			set_select_visible(false)
+			emit_signal("actionSignal", str(currentSpeach - 1))
+			currentSpeach = 1
+		elif !finished:
+			speach1Text.visible_characters = -1
+			finished = true
 
 func _ready():
 	self.set_process_unhandled_input(false)
@@ -47,6 +52,7 @@ func set_speach1(value):
 	speach1Text.bbcode_text = _speach1
 	set_numberOfAnswers(1)
 	set_x_size(len(speach1Text.text))
+	text_anim()
 	self.set_process_unhandled_input(true)
 
 func set_speach2(value):
@@ -108,6 +114,8 @@ func _on_LeftButton_pressed():
 
 
 func _on_RightButton_pressed():
+	finished = true
+	speach1Text.visible_characters = -1
 	set_currentSpeach(min(currentSpeach +1 , numberOfAnswers))
 
 
@@ -121,3 +129,14 @@ func set_select_visible(_bool: bool):
 	select3.visible = _bool
 	leftButton.visible = _bool
 	rightButton.visible = _bool
+
+func text_anim():
+	finished = false
+	speach1Text.visible_characters = 0
+	while speach1Text.visible_characters < len(speach1Text.text) and !finished:
+		speach1Text.visible_characters += 1
+		timer.wait_time = 1 / textSpeed
+		timer.start()
+		yield(timer, "timeout")
+#		set_x_size(speach1Text.visible_characters)
+	finished = true

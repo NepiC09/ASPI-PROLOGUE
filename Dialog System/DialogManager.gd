@@ -15,6 +15,8 @@ var textSpeed = 0.05
 var finished = false
 var action = ""
 
+var playerPhraseNum = 0
+
 func _ready():
 	NPC.set_direction(player.position - NPC.position) 
 	player.set_direction(NPC.position - player.position)
@@ -28,6 +30,7 @@ func _ready():
 	fade_animation(0)
 	
 	character = NPC.character
+# warning-ignore:return_value_discarded
 	player_TextBox.connect("actionSignal", self, "_on_AnswerBox_actionSignal")
 	
 	dialogue = get_dialogue(); assert(dialogue, "Dialog not found")
@@ -43,52 +46,58 @@ func _unhandled_input(_event):
 
 
 func next_phrase():
-	if(character.phraseNum >= len(dialogue[character.dialogNum])): #если фразы закончились
+	if(character.phraseNum >= len(dialogue[0])): #если фразы закончились
 		NPC.state = NPC.MOVE
 		player.state = player.MOVE
+		NPC_TextBox.visible = false
+		player_TextBox.visible = false
 		queue_free()
 		return
+	NPC_TextBox._text = dialogue[0][character.phraseNum as String]["Text"]
 	
+	action = dialogue[0][character.phraseNum as String]["Action"]
 	
-	NPC_TextBox._text = dialogue[character.dialogNum][character.phraseNum as String]["Text"]
-	
-	action = dialogue[character.dialogNum][character.phraseNum as String]["Action"]
-	
-	if action == "Answer":
-		set_answers()
+	if action == "Player Turn":
+		fade_animation(1)
+		set_player_speach()
 	elif action == "Open Name":
 		character.NameKnown = true
 
 
-func set_answers():
-	fade_animation(1)
+func set_player_speach():
+	var playerPhrase = playerPhraseNum as String
+	var playerSpeech = dialogue[0][character.phraseNum as String]["Player"][playerPhrase]
+	var numSpeeches = len(playerSpeech)
 	
-	var answers = dialogue[character.dialogNum][character.phraseNum as String]["Answer"]
-	var numAnswers = len(answers)
 	
-	if numAnswers >= 1:
-		player_TextBox._speach1 = answers["0"]["Text"]
-	if numAnswers >= 2:
-		player_TextBox._speach2 = answers["1"]["Text"]
-	if numAnswers >= 3:
-		player_TextBox._speach3 = answers["2"]["Text"]
+	if numSpeeches >= 1:
+		player_TextBox._speach1 = playerSpeech["0"]["Text"]
+	if numSpeeches >= 2:
+		player_TextBox._speach2 = playerSpeech["1"]["Text"]
+	if numSpeeches >= 3:
+		player_TextBox._speach3 = playerSpeech["2"]["Text"]
 
 
 func _on_AnswerBox_actionSignal(_answer: String):
-	var answers = dialogue[character.dialogNum][character.phraseNum as String]["Answer"]
+	var answers = dialogue[0][character.phraseNum as String]["Player"][playerPhraseNum as String]
 	var answerAction = answers[_answer]["Action"]
-	if answerAction == "Stop dialogue":
-		character.phraseNum = len(dialogue[character.dialogNum])
+	if answerAction == "Stop Dialogue":
 		quit_dialog()
-	elif answerAction == "Continue In Line":
+	elif answerAction == "NPC Continue In Line":
 		character.phraseNum = answers[_answer]["In Line"] as int
+		playerPhraseNum = 0
 		next_phrase()
 		fade_animation(0)
+	elif answerAction == "Player Continue In Line":
+		playerPhraseNum = answers[_answer]["In Line"] as int
+		set_player_speach()
+
 
 func quit_dialog():
 		NPC.state = NPC.MOVE
 		player.state = player.MOVE
 		
+		character.phraseNum = len(dialogue[0])
 		fade_animation(3)
 
 #получение диалога в виде массива
