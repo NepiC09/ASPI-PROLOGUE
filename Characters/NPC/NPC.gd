@@ -7,7 +7,7 @@ onready var textBox = $TextBox
 #ссылки на свойства объектов
 onready var animationState = $AnimationTree.get("parameters/playback") #для переключения анимаций
 #ссылки на сцены в проекте
-onready var DialogBox = preload("res://Dialog System/Dialog.tscn")
+onready var DialogManager = preload("res://Dialog System/DialogManager.tscn")
 
 
 #состояния
@@ -21,8 +21,8 @@ var state = MOVE #состояния персонажа
 var velocity = Vector2.ZERO #вектор его движения
 
 #диалоговая система
-var speaker2 :KinematicBody2D = null #есть ли ИГРОК внутри области персонажа (пока без взаимодействия между НПС)
-var dialogBox :Position2D #диалоговое окно, которое будет спавниться
+var player :KinematicBody2D = null #есть ли ИГРОК внутри области персонажа (пока без взаимодействия между НПС)
+var dialogManager :Node2D
 var character :Character #ресурсы персонажа, со всей инфой (изменения здесь могут быть сохранены или перезаписаны)
 
 #константы передвижения
@@ -33,7 +33,7 @@ export var FRICTION = 1800
 
 func _unhandled_input(_event):
 	#активация диалога
-	if Input.is_action_just_pressed("action") and speaker2 != null and state != DIALOGUE:
+	if Input.is_action_just_pressed("action") and player != null and state != DIALOGUE:
 		make_dialog_box() #создаёт диалоговое окно и настраивает
 		interactiv.visible = false
 
@@ -57,21 +57,19 @@ func dialogue_state():
 
 #игрок зашёл в область
 func _on_Area2D_body_entered(body):
-	speaker2 = body
+	player = body
 	interactiv.visible = true
 
 #игрок вышели из области
 func _on_Area2D_body_exited(_body):
-	speaker2 = null
+	player = null
 	interactiv.visible = false
 
 #создание диалогового окна
 func make_dialog_box():
-	dialogBox = DialogBox.instance()
-	textBox.visible = true
+	dialogManager = DialogManager.instance()
 	
-	dialogBox.speaker1 = self
-	dialogBox.speaker2 = speaker2
+	dialogManager.NPC = self
+	dialogManager.player = player
 	
-	get_tree().current_scene.get_node("Dialogs").add_child(dialogBox)
-	remoteTransform.remote_path = dialogBox.get_path()
+	get_tree().current_scene.add_child(dialogManager)

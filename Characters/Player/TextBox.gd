@@ -25,12 +25,21 @@ var _speach1 = "" setget set_speach1
 var _speach2 = "" setget set_speach2
 var _speach3 = "" setget set_speach3
 
+signal actionSignal
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_left"):
 		leftButton.emit_signal("pressed")
 	if Input.is_action_just_pressed("ui_right"):
 		rightButton.emit_signal("pressed")
+	if Input.is_action_just_pressed("ui_accept"):
+		emit_signal("actionSignal", str(currentSpeach - 1))
+		set_select_visible(false)
+		currentSpeach = 1
+		self.set_process_unhandled_input(false)
+
+func _ready():
+	self.set_process_unhandled_input(false)
 
 
 func set_speach1(value):
@@ -38,6 +47,7 @@ func set_speach1(value):
 	speach1Text.bbcode_text = _speach1
 	set_numberOfAnswers(1)
 	set_x_size(len(speach1Text.text))
+	self.set_process_unhandled_input(true)
 
 func set_speach2(value):
 	_speach2 = value
@@ -104,3 +114,10 @@ func _on_RightButton_pressed():
 func _on_Speach1_resized():
 	var lines = ceil(speach1Text.rect_size.y/19)
 	set_y_size(lines - 1)
+
+func set_select_visible(_bool: bool):
+	select1.visible = _bool
+	select2.visible = _bool
+	select3.visible = _bool
+	leftButton.visible = _bool
+	rightButton.visible = _bool

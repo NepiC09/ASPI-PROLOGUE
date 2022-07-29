@@ -12,10 +12,10 @@ var finished = false
 
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("LeftMouse"):
-		if !finished:
-			Text.visible_characters = len(_text)
+		Text.visible_characters = len(_text)
 
 func set_text(value):
+	self.set_process_unhandled_input(true)
 	#настройка размеров и положения
 	_text = value
 	Text.bbcode_text =_text
@@ -32,6 +32,7 @@ func set_text(value):
 		yield(timer, "timeout")
 #		set_x_size(Text.visible_characters)
 	finished = true
+	self.set_process_unhandled_input(false)
 
 
 func set_x_size(value: int):

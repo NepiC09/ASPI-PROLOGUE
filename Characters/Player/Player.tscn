@@ -299,6 +299,7 @@ custom_styles/pressed = SubResource( 25 )
 custom_styles/focus = SubResource( 25 )
 custom_styles/disabled = SubResource( 25 )
 custom_styles/normal = SubResource( 25 )
+button_mask = 0
 
 [node name="RightButton" type="Button" parent="TextBox"]
 visible = false
@@ -313,6 +314,7 @@ custom_styles/pressed = SubResource( 25 )
 custom_styles/focus = SubResource( 25 )
 custom_styles/disabled = SubResource( 25 )
 custom_styles/normal = SubResource( 25 )
+button_mask = 0
 
 [node name="SelectContainer" type="HBoxContainer" parent="TextBox"]
 margin_left = -20.0
