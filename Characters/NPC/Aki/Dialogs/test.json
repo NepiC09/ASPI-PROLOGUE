@@ -1,0 +1,89 @@
+[
+  {
+    "1": {
+      "Text": "Начало",
+      "Action": "Player Turn",
+      "In Line": "-1",
+      "Player": {
+        "1": {
+          "1": {
+            "Text": "111",
+            "Action": "Player Continue In Line",
+            "In Line": "1001"
+          },
+          "2": {
+            "Text": "222",
+            "Action": "Player Continue In Line",
+            "In Line": "2001"
+          },
+          "3": {
+            "Text": "333",
+            "Action": "NPC Continue In Line",
+            "In Line": "2"
+          }
+        },
+        "1001": {
+          "1": {
+            "Text": "1001",
+            "Action": "NPC Continue In Line",
+            "In Line": "4"
+          }
+        },
+        "2001": {
+          "1": {
+            "Text": "2001",
+            "Action": "NPC Continue In Line",
+            "In Line": "3"
+          }
+        }
+      }
+    },
+    "2": {
+      "Text": "333",
+      "Action": "Player Turn",
+      "In Line": "-1",
+      "Player": {
+        "1": {
+          "1": {
+            "Text": "333",
+            "Action": "Stop Dialogue",
+            "In Line": "-1"
+          }
+        }
+      }
+    },
+    "3": {
+      "Text": "222",
+      "Action": "Player Turn",
+      "In Line": "-1",
+      "Player": {
+        "1": {
+          "1": {
+            "Text": "222",
+            "Action": "Stop Dialogue",
+            "In Line": "-1"
+          }
+        }
+      }
+    },
+    "4": {
+      "Text": "111",
+      "Action": "Player Turn",
+      "In Line": "-1",
+      "Player": {
+        "1": {
+          "1": {
+            "Text": "111.1",
+            "Action": "Stop Dialogue",
+            "In Line": "-1"
+          },
+          "2": {
+            "Text": "111.2",
+            "Action": "Stop Dialogue",
+            "In Line": "-1"
+          }
+        }
+      }
+    }
+  }
+]

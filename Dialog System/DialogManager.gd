@@ -15,7 +15,7 @@ var textSpeed = 0.05
 var finished = false
 var action = ""
 
-var playerPhraseNum = 0
+var playerPhraseNum = 1
 
 func _ready():
 	NPC.set_direction(player.position - NPC.position) 
@@ -41,12 +41,12 @@ func _ready():
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("LeftMouse"):
 		if NPC_TextBox.finished and (action == "Continue" or action == "Open Name"):
-			character.phraseNum += 1
+			character.phraseNum = dialogue[0][character.phraseNum as String]["In Line"] as int
 			next_phrase()
 
 
 func next_phrase():
-	if(character.phraseNum >= len(dialogue[0])): #если фразы закончились
+	if(character.phraseNum > len(dialogue[0])): #если фразы закончились
 		NPC.state = NPC.MOVE
 		player.state = player.MOVE
 		NPC_TextBox.visible = false
@@ -58,6 +58,8 @@ func next_phrase():
 	action = dialogue[0][character.phraseNum as String]["Action"]
 	
 	if action == "Player Turn":
+		$Timer.start(1)
+		yield($Timer, "timeout")
 		fade_animation(1)
 		set_player_speach()
 	elif action == "Open Name":
@@ -71,11 +73,11 @@ func set_player_speach():
 	
 	
 	if numSpeeches >= 1:
-		player_TextBox._speach1 = playerSpeech["0"]["Text"]
+		player_TextBox._speach1 = playerSpeech["1"]["Text"]
 	if numSpeeches >= 2:
-		player_TextBox._speach2 = playerSpeech["1"]["Text"]
+		player_TextBox._speach2 = playerSpeech["2"]["Text"]
 	if numSpeeches >= 3:
-		player_TextBox._speach3 = playerSpeech["2"]["Text"]
+		player_TextBox._speach3 = playerSpeech["3"]["Text"]
 
 
 func _on_AnswerBox_actionSignal(_answer: String):
@@ -85,7 +87,7 @@ func _on_AnswerBox_actionSignal(_answer: String):
 		quit_dialog()
 	elif answerAction == "NPC Continue In Line":
 		character.phraseNum = answers[_answer]["In Line"] as int
-		playerPhraseNum = 0
+		playerPhraseNum = 1
 		next_phrase()
 		fade_animation(0)
 	elif answerAction == "Player Continue In Line":

@@ -14,7 +14,7 @@ onready var select2Sprite = $SelectContainer/Select2/Selected
 onready var select3Sprite = $SelectContainer/Select3/Selected
 
 onready var timer = $Timer
-var textSpeed :float = 20
+var textSpeed: float = 20
 var finished = true
 
 var currentSpeach = 1 setget set_currentSpeach
@@ -37,7 +37,7 @@ func _unhandled_input(_event):
 		if finished:
 			self.set_process_unhandled_input(false)
 			set_select_visible(false)
-			emit_signal("actionSignal", str(currentSpeach - 1))
+			emit_signal("actionSignal", str(currentSpeach))
 			currentSpeach = 1
 		elif !finished:
 			speach1Text.visible_characters = -1
