@@ -10,7 +10,7 @@ func set_characters():
 	#ВСЕ ПЕРСОНАЖИ БУДУТ НАСТРОЕНЫ ПОДОБНЫМ ОБРАЗОМ
 	Aki = Character.new(); 
 	Aki.Name = "Aki"; 
-	Aki.dialogPath = "res://Characters/NPC/Aki/Dialogs/test.json"
+	Aki.dialogPath = "res://Characters/NPC/Aki/Dialogs/AkiDialog.json"
 	
 	Test_Nobody = Character.new(); Test_Nobody.Name = "Nobody"
 	
